@@ -30,3 +30,10 @@ In one shell, run:
 Then in another shell, run:
 
 `java -cp target/demo-jms-*-uberjar.jar com.romajs.jms.TopicPublish <topic name> <text message>`
+
+
+### Topic publish/subscriber (durable):
+
+To not lose any messages when your subscriber is offline, you must make it durable ;)
+
+`java -cp target/demo-jms-*-uberjar.jar com.romajs.jms.DurableTopicSubscriber <topic name> <subscription name> <client id>`

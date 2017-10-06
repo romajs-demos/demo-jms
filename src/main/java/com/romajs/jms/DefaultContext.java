@@ -17,7 +17,7 @@ public class DefaultContext implements Context {
     public DefaultContext() throws JMSException {
         connectionFactory = new ActiveMQConnectionFactory(ActiveMQConnection.DEFAULT_BROKER_URL);
         connection = connectionFactory.createConnection();
-        session = connection.createSession(false, Session.CLIENT_ACKNOWLEDGE);
+        session = createSession(connection);
     }
 
     @Override
@@ -33,5 +33,11 @@ public class DefaultContext implements Context {
     @Override
     public Session getSession() {
         return session;
+    }
+
+    @Override
+    public Session createSession(Connection connection) throws JMSException {
+        this.connection = connection;
+        return this.connection.createSession(false, Session.CLIENT_ACKNOWLEDGE);
     }
 }
